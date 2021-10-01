@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Container, BodyArea, AsideArea, PageBody } from './AppStyled';
 
-function App() {
+import SearchBox from './pages/components/SearchBox';
+import ContactBox from './pages/components/ContactBox';
+import Menu from './pages/components/Menu';
+
+import Routes from './Routes';
+
+
+const App = () => {
+  const [search, setSearch] = useState('');
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Container>
+        <BodyArea>
+          <AsideArea>
+            <SearchBox search={search} onSearch={setSearch} />
+
+            <ContactBox search={search} />
+
+            <Menu />
+          </AsideArea>
+          <PageBody>
+            <Routes />
+          </PageBody>
+        </BodyArea>
+      </Container>
+    </BrowserRouter>
   );
 }
 
